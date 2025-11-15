@@ -31,12 +31,9 @@ La solución analiza automáticamente los datos de facturas digitalizadas (JSON)
 * **FastAPI** (backend / endpoints de validación)
 * **Vue.js** (frontend / interfaz visual)
 
-### **Servicios externos**
+## 🧑‍💻 **Equipo**
 
-* **Google AI Studio – Gemini API** (procesamiento inteligente de texto estructurado)
+* Alexander Cuellar
+* Helena Amaya
+* David Calderón
 
-### **Herramientas adicionales**
-
-* GitHub (control de versiones)
-* JSON como formato de entrada de las facturas
-* HTML/CSS/JS para integración del frontend
