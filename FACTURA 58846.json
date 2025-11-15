@@ -1,0 +1,99 @@
+{
+  "Fields": [
+    {
+      "Fields": "Supplier",
+      "Value": "Andes Global International LLC"
+    },
+    {
+      "Fields": "Customer",
+      "Value": "C.I. IBLU S.A.S."
+    },
+    {
+      "Fields": "SupplierAddress",
+      "Value": "1011 Sunnybrook Road.\nPH Floor Suite 1110\nMiami, FL 33136\nPh: 305-290-3720"
+    },
+    {
+      "Fields": "SupplierTaxID",
+      "Value": ""
+    },
+    {
+      "Fields": "CustomerAddress",
+      "Value": "CALLE 31 ΝΟ 44-1458\nMEDELLIN\nCOLOMBIA"
+    },
+    {
+      "Fields": "CustomerTaxID",
+      "Value": "890.932-279-6 OE 01078"
+    },
+    {
+      "Fields": "InvoiceNumber",
+      "Value": "58846"
+    },
+    {
+      "Fields": "InvoiceDate",
+      "Value": "12/23/2024"
+    },
+    {
+      "Fields": "PaymentTerms",
+      "Value": "45 Days BL"
+    },
+    {
+      "Fields": "CountryOfOrigin",
+      "Value": "USA"
+    },
+    {
+      "Fields": "PortOfLoading",
+      "Value": "NEW YORK, NY"
+    },
+    {
+      "Fields": "PortOfDischarge",
+      "Value": "Cartagena, COL"
+    },
+    {
+      "Fields": "Incoterm",
+      "Value": "CIP"
+    },
+    {
+      "Fields": "Currency",
+      "Value": "USD"
+    },
+    {
+      "Fields": "TotalInvoiceValue",
+      "Value": "78356.90"
+    },
+    {
+      "Fields": "ExporterContact",
+      "Value": "pagoslatam@andesgt.com"
+    },
+    {
+      "Fields": "ImporterContact",
+      "Value": ""
+    },
+    {
+      "Fields": "ShippingMark",
+      "Value": ""
+    },
+    {
+      "Fields": "InvoiceType",
+      "Value": "Invoice"
+    },
+    {
+      "Fields": "OriginCountryAddress",
+      "Value": "Miami, FL USA"
+    }
+  ],
+  "Table": [
+    {
+      "SKU": "",
+      "Description": "FROZEN PORK SIRLOINS FZ BNLS / PUNTA DE LOMO DE CERDO SIN HUESO CONGELADO",
+      "Quantity": "24,486.53",
+      "UnitOfMeasurement": "Kg",
+      "UnitPrice": "3.20",
+      "NetValuePerItem": "78,356.90",
+      "Currency": "USD",
+      "HSCode": "",
+      "Weight": "",
+      "BatchOrLotNumber": "",
+      "NumberOfPackagesBoxes": ""
+    }
+  ]
+}

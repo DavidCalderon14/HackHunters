@@ -1,0 +1,261 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hackhunters | Validación avanzada DIAN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Iconos (Boxicons) -->
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos -->
+  <link 
+    rel="stylesheet" 
+    href="/static/css/styles.css"
+  />
+
+  <!-- jsPDF -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <!-- Lógica de la app -->
+  <script 
+    src="{{ url_for('static', path='js/app.js') }}" 
+    defer
+  ></script>
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <i class="bx bx-bulb"></i>
+        </div>
+        <div class="logo-text">
+          <span class="title">Hackhunters</span>
+          <span class="subtitle">Validación avanzada DIAN</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-btn active">
+          <i class="bx bx-check-shield"></i>
+          Panel de validación
+        </button>
+
+        <a
+          class="nav-btn"
+          href="https://www.dian.gov.co/factura-electronica"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="bx bx-link-external"></i>
+          Requisitos oficiales DIAN
+        </a>
+
+        <button class="nav-btn" id="btn-scroll-exports">
+          <i class="bx bx-export"></i>
+          Herramientas de exportación
+        </button>
+
+        <button class="nav-btn" id="btn-scroll-support">
+          <i class="bx bx-info-circle"></i>
+          Ayuda / Soporte
+        </button>
+      </nav>
+
+      <footer class="sidebar-footer">
+        <span>v1.0 · Hackhunters</span>
+        <span class="tiny">Desarrollado por ti 💙</span>
+      </footer>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <!-- HEADER -->
+      <header class="main-header">
+        <div>
+          <h1>Validación avanzada de facturas DIAN</h1>
+          <p>Sube tus archivos JSON y obtén una validación clara, rápida y exportable.</p>
+        </div>
+        <div class="header-badge">
+          <i class="bx bx-rocket"></i>
+          <span>Reto Hackhunters</span>
+        </div>
+      </header>
+
+      <!-- GRID PRINCIPAL -->
+      <section class="grid">
+        <!-- CARD: CARGA Y VALIDACIÓN -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>
+                <i class="bx bx-cloud-upload"></i>
+                Validar archivos JSON
+              </h2>
+              <p>Carga uno o varios JSON de factura y ejecuta la validación DIAN.</p>
+            </div>
+            <div class="badge-pill">
+              <i class="bx bx-shield-quarter"></i> Motor de validación DIAN
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="upload-row">
+              <label class="file-input">
+                <i class="bx bx-file-find"></i>
+                <span>Elegir archivos JSON</span>
+                <input
+                  type="file"
+                  id="json-input"
+                  accept=".json,application/json"
+                  multiple
+                />
+              </label>
+
+              <div class="upload-actions">
+                <button id="btn-validate" class="btn primary">
+                  <i class="bx bx-check-double"></i>
+                  Validar todo
+                </button>
+                <button id="btn-reset" class="btn ghost">
+                  <i class="bx bx-trash"></i>
+                  Limpiar
+                </button>
+              </div>
+            </div>
+
+            <div id="file-list" class="file-list"></div>
+            <div id="validation-status" class="status-bar"></div>
+          </div>
+        </section>
+
+        <!-- CARD: PDF -> JSON -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>
+                <i class="bx bx-file"></i>
+                Convertir PDF → JSON
+              </h2>
+              <p>Convierte una factura PDF en un JSON base para luego validarla.</p>
+            </div>
+            <div class="badge-pill secondary">
+              <i class="bx bx-test-tube"></i> Módulo experimental
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="upload-row">
+              <label class="file-input">
+                <i class="bx bx-file-pdf"></i>
+                <span>Seleccionar PDF</span>
+                <input type="file" id="pdf-input" accept="application/pdf" />
+              </label>
+
+              <button id="btn-convert-pdf" class="btn outline">
+                <i class="bx bx-transfer"></i>
+                Convertir a JSON
+              </button>
+            </div>
+
+            <pre id="pdf-json-output" class="code-block small">
+Selecciona un PDF para ver aquí el JSON generado (placeholder).</pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- RESULTADOS -->
+      <section class="card" id="results-section">
+        <div class="card-header">
+          <div>
+            <h2>
+              <i class="bx bx-list-check"></i>
+              Resultados de validación
+            </h2>
+            <p>Revisa archivo por archivo los errores y sugerencias propuestas.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div id="results-container" class="results-grid"></div>
+        </div>
+      </section>
+
+      <!-- EXPORTS -->
+      <section class="card" id="exports-section">
+        <div class="card-header">
+          <div>
+            <h2>
+              <i class="bx bx-export"></i>
+              Exportar resultados
+            </h2>
+            <p>Genera reportes para compartir o adjuntar como evidencia.</p>
+          </div>
+        </div>
+
+        <div class="card-body export-actions">
+          <button id="btn-export-json" class="btn primary">
+            <i class="bx bx-code-curly"></i>
+            Exportar consolidado JSON
+          </button>
+
+          <button id="btn-export-xml" class="btn outline">
+            <i class="bx bx-code-alt"></i>
+            Exportar consolidado XML
+          </button>
+
+          <button id="btn-export-pdf" class="btn ghost">
+            <i class="bx bx-file-blank"></i>
+            Exportar reporte PDF
+          </button>
+
+          <p class="export-note">
+            Los reportes incluyen el estado global de cada archivo y sus errores principales.
+            El JSON consolidado también sirve como “JSON corregido” con sugerencias incluidas.
+          </p>
+        </div>
+      </section>
+
+      <!-- AYUDA -->
+      <section class="card" id="support-section">
+        <div class="card-header">
+          <div>
+            <h2>
+              <i class="bx bx-help-circle"></i>
+              Ayuda / Notas del sistema
+            </h2>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <ul class="help-list">
+            <li>
+              <i class="bx bx-info-circle"></i>
+              La validación se basa en tu función <code>validar_factura</code>.
+            </li>
+            <li>
+              <i class="bx bx-info-circle"></i>
+              Puedes retornar un <strong>JSON corregido</strong> para mejorar el flujo.
+            </li>
+            <li>
+              <i class="bx bx-info-circle"></i>
+              El módulo PDF → JSON está conectado, solo falta implementar la lógica real.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
